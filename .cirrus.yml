@@ -11,8 +11,8 @@ task:
   timeout_in: 480m  
   container:
       image: inok2341/anu:latest
-      cpu: 44
-      memory: 176G
+      cpu: 40
+      memory: 64G
         
   Build-Env-Setup_background_script:
        - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Setup Build"

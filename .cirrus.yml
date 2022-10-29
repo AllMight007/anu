@@ -45,8 +45,8 @@ task:
       - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j 30 || repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j 8
       
       # DT/VT/KT/TC
-      - git clone https://github.com/phoenix-1708/device_xiaomi_sweet -b calyx --depth=1 device/xiaomi/sweet
-      - git clone https://github.com/phoenix-1708/vendor_xiaomi_sweet -b main --depth=1 vendor/xiaomi/sweet
+      - git clone https://github.com/phoenix-1708/android_device_xiaomi_sweet -b calyx --depth=1 device/xiaomi/sweet
+      - git clone https://github.com/phoenix-1708/android_vendor_xiaomi_sweet -b arrow-13.0 --depth=1 vendor/xiaomi/sweet
       - git clone https://github.com/Pulkit077/kernel_xiaomi_sweet -b thirteen --depth=1 kernel/xiaomi/sweet
       #- git clone https://github.com/olhotorto/kernel_xiaomi_sweet -b dev/13 --depth=1 kernel/xiaomi/sweet
       - git clone https://github.com/kdrag0n/proton-clang -b master --depth=1 prebuilts/clang/host/linux-x86/clang-proton

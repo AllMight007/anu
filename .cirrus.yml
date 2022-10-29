@@ -47,7 +47,8 @@ task:
       # DT/VT/KT/TC
       - git clone https://github.com/phoenix-1708/device_xiaomi_sweet -b calyx --depth=1 device/xiaomi/sweet
       - git clone https://github.com/phoenix-1708/vendor_xiaomi_sweet -b main --depth=1 vendor/xiaomi/sweet
-      - git clone https://github.com/olhotorto/kernel_xiaomi_sweet -b dev/13 --depth=1 kernel/xiaomi/sweet
+      - git cline https://github.com/Pulkit077/kernel_xiaomi_sweet -b thirteen --depth=1 kernel/xiaomi/sweet
+      #- git clone https://github.com/olhotorto/kernel_xiaomi_sweet -b dev/13 --depth=1 kernel/xiaomi/sweet
       - git clone https://github.com/kdrag0n/proton-clang -b master --depth=1 prebuilts/clang/host/linux-x86/clang-proton
       - cp kernel/xiaomi/sweet/arch/arm64/configs/sweet_defconfig kernel/xiaomi/sweet/arch/arm64/configs/sweet_user_defconfig
       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Sync Completed!"

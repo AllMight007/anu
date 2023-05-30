@@ -22,7 +22,7 @@ task:
        - git config --global user.name "phoenix8870"
        - git config --global user.email "harigphotos1708@gmail.com"
        - git config --global color.ui true
-       - git lfs install
+      # - git lfs install
        - git clone https://huggingface.co/spaces/phoenix-1708/stable-diffusion-webui-cpu
        - cd stable-diffusion-webui-cpu
        - python app.py

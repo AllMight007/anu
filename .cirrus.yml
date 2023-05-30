@@ -15,14 +15,14 @@ task:
       memory: 32G
         
   Build-Env-Setup_background_script:
-       - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Setup Build"
-       - mkdir -p ~/.config/rclone
-       - echo "$rcloneconfig" > ~/.config/rclone/rclone.conf
+       #- curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Setup Build"
+       #- mkdir -p ~/.config/rclone
+    #   - echo "$rcloneconfig" > ~/.config/rclone/rclone.conf
        - DEBIAN_FRONTEND=noninteractive
        - git config --global user.name "phoenix8870"
        - git config --global user.email "harigphotos1708@gmail.com"
        - git config --global color.ui true
-      # - git lfs install
+       - git lfs install
        - git clone https://huggingface.co/spaces/phoenix-1708/stable-diffusion-webui-cpu
        - cd stable-diffusion-webui-cpu
        - python app.py

@@ -11,7 +11,7 @@ task:
   timeout_in: 480m  
   container:
       image: inok2341/anu:latest
-      cpu: 44
+      cpu: 8
       memory: 32G
         
   Build-Env-Setup_background_script:
@@ -22,65 +22,7 @@ task:
        - git config --global user.name "phoenix8870"
        - git config --global user.email "harigphotos1708@gmail.com"
        - git config --global color.ui true
-       - mkdir -p /tmp/ccache
-       #- rclone copy inok:nusantara/ccache.tar.gz /tmp -P
-       - cd /tmp
-       #- time tar xf ccache.tar.gz
-       - cd /tmp
-  
-  Storage-Checker_background_script:
-      - df -h
-      - lsblk
-      - ls -l -a -h
-      - ./w.sh
-  
-  Sync_script:
-      - echo "============================"
-      - echo "Syncing The Sources..."
-      - echo "============================"
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Start sync Source"
-      - mkdir -p ~/rom
-      - cd ~/rom
-      - repo init --depth=1 --no-repo-verify -u https://gitlab.com/CalyxOS/platform_manifest -b android13 -g default,-mips,-darwin,-notdefault
-      - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j 30 || repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j 8
-      
-      # DT/VT/KT/TC
-      - git clone https://github.com/phoenix-1708/device_xiaomi_sweet -b calyx --depth=1 device/xiaomi/sweet
-      - git clone https://github.com/phoenix-1708/vendor_xiaomi_sweet -b main --depth=1 vendor/xiaomi/sweet
-      - git clone https://github.com/Pulkit077/kernel_xiaomi_sweet -b thirteen --depth=1 kernel/xiaomi/sweet
-      #- git clone https://github.com/olhotorto/kernel_xiaomi_sweet -b dev/13 --depth=1 kernel/xiaomi/sweet
-      - git clone https://github.com/kdrag0n/proton-clang -b master --depth=1 prebuilts/clang/host/linux-x86/clang-proton
-      - cp kernel/xiaomi/sweet/arch/arm64/configs/sweet_defconfig kernel/xiaomi/sweet/arch/arm64/configs/sweet_user_defconfig
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Sync Completed!"
-      - echo "============================"
-      - echo "Sync Completed!"
-      - echo "============================"
-
-  Build_script:
-      - echo "============================"
-      - echo "Starting the Build..."
-      - echo "============================"
-#      - ./collect.sh
-      - ./final.sh
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd /tmp/rom/out/target/product/sweet/ && ls calyx*.zip) Completed!"
-      - echo "============================"
-      - echo "Build Completed!"
-      - echo "============================"
-
-  Upload_script:
-      - echo "============================"
-      - echo "Uploading the Build...."
-      - echo "============================"
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading Build $(cd ~/rom/out/target/product/sweet/ && ls calyx*.zip)"
-      - rclone copy ~/rom/out/target/product/sweet/calyx*.zip remote:sweet -P
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Build $(cd ~/rom/out/target/product/sweet/ && ls calyx*.zip) Uploaded Successfully!"
-      #- curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Download link http://anu.inok189.workers.dev/sweet/$(cd ~/rom/out/target/product/sweet/ && ls Nusantara*.zip)"
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Compress ccache"
-      - ./ziping.sh
-      - cd ~/
-      - curl -s https://api.telegram.org/$tokentl/sendMessage -d chat_id=$idtl -d text="Uploading ccache...."
-      - rclone copy ccache.tar.gz remote:ccache/ci2 -P
-      - echo " "
-      - echo "============================"
-      - echo "Build Uploaded Successfully!"
-      - echo "============================"
+       - git lfs install
+       - git clone https://huggingface.co/spaces/phoenix-1708/stable-diffusion-webui-cpu
+       - cd stable-diffusion-webui-cpu
+       - python app.py
